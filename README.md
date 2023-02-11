@@ -1,1 +1,1 @@
-"# EgoleBearingApp" 
+Egole Bearing general trading plc. E-Commerce Website project which will utilizing python Django framework and PostgreSQL for backend development and Html5,CSS,JavaScripit,Bootsraps,and jQuery as frontend development Frameworks. 
