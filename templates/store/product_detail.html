@@ -1,0 +1,354 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block javascript %}
+   <script type="text/javascript" src="{% static 'js/main.js' %}" defer ></script>
+{% endblock %}
+<link rel="stylesheet" href="{% static 'CSS/product.css' %}" />
+{% block title %}Product List{% endblock %}
+{% block main %}
+<div class="container mb-5 " style="max-width: 99%;">
+       <!-- Example Code -->
+    <div class="card text-start border-0 ">
+        <div class="card-header bg-white border-0">
+            {{productDetail.product_name}}  {{productDetail.brand}}
+        </div>
+        <hr>
+        <div class="card-body ">
+          <div class="row row-cols-1 row-cols-md-2 g-1 ">
+            <div class="col ">
+              <div class="card h-100 shadow">
+                <div class="card-body">
+                  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+                    <div class="carousel-indicators">
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                      <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
+                    </div>
+                    <div class="carousel-inner">
+                      <div class="carousel-item active" data-bs-interval="10000">
+                        {% if productDetail.images.image1 %}
+                        <img src="{{ productDetail.images.image1.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                      <div class="carousel-item" data-bs-interval="2000">
+                        {% if productDetail.images.image2 %}
+                        <img src="{{ productDetail.images.image2.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                      <div class="carousel-item">
+                        {% if productDetail.images.image3 %}
+                        <img src="{{ productDetail.images.image3.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                      <div class="carousel-item">
+                        {% if productDetail.images.image4 %}
+                        <img src="{{ productDetail.images.image4.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                      <div class="carousel-item">
+                        {% if productDetail.images.image5 %}
+                        <img src="{{ productDetail.images.image5.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                      <div class="carousel-item">
+                        {% if productDetail.images.image6 %}
+                        <img src="{{ productDetail.images.image6.url}}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% else %}
+                        <img src="{% static 'IMAGES/placeholder.png' %}" class="d-block w-100" width="600" height="300"  alt="{{productDetail.images.alt}}">
+                        {% endif %}
+                      </div>
+                    </div>
+                    <button class="carousel-control-prev invisible" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+                      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next invisible" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+                      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                      <span class="visually-hidden">Next</span>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col ">
+              <div class="card h-100 shadow">
+                <div class="card-body">
+                  <h6 class="card-title my-4 mx-4">{{productDetail.part_number}} {{productDetail.product_name}} {{productDetail.brand}} </h6>
+                  <ul class="list-group list-group-flush mx-1">
+                    <li class="list-group-item"></li>
+                    <li class="list-group-item ">
+                      <div class="d-flex justify-content-start ">
+                        
+                          <button class="btn btn-sm btn-outline-warning border-0"><i class="bi bi-star-fill"></i></button>
+                          <button class="btn btn-sm btn-outline-warning border-0"><i class="bi bi-star-fill"></i></button>
+                          <button class="btn btn-sm btn-outline-warning border-0"><i class="bi bi-star-fill"></i></button>
+                          <button class="btn btn-sm btn-outline-warning border-0"><i class="bi bi-star-fill"></i></button>
+                          <button class="btn btn-sm btn-outline-warning border-0"><i class="bi bi-star-half"></i></button>
+                          <small class="pt-2 mx-1">4.5 Retting |</small>
+                          <small class="pt-2 mx-1"> 100 comments</small>
+                      </div>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="d-flex justify-content-start gap-3 ">
+                        <small class="btn btn-sm ">Unit price : </small>
+                        <h5 class="">$ {{productDetail.price}}</h5>
+                        <small class="text-danger text-decoration-line-through"> $ {{productDetail.price}}</small>
+                       
+                        
+                      </div>
+      
+                    </li>
+                    <li class="list-group-item"> 
+                      <small class="btn btn-sm ">Shipping : </small>
+                      <small class="">{{productDetail.shipping}}</small> </li>
+                    <li class="list-group-item"> 
+                        <div class="d-flex justify-content-start gap-2 ">
+                            <div>
+                            {% if productDetail.quantity == 0 %}
+                            <small class="btn btn-sm ">Available:</small>
+                             <small class=""> outoff stock</small> 
+                            {% else %}
+                             <small class="btn btn-sm ">Available :</small>
+                             <small class=""> {{productDetail.available}}</small>
+                            {% endif %}
+                            </div> 
+                            <div>
+                             <small class="btn btn-sm ">States : </small> 
+                             <small class=""> {{productDetail.states}}</small>
+                            </div>
+                        </div>
+        
+                    </li>
+                    <li class="list-group-item text-start">
+                      <small class="btn btn-sm ">Description : </small>
+                      <small class="px-1">{{productDetail.description|truncatewords:28}}</small>
+                    </li>
+                    <li class="list-group-item">
+                      <div class="input-group row row-cols-1 row-cols-sm-1 row-cols-md-4 g-1 gap-1" >
+                          <input type="number" class="form-control form-control-sm text-center"  value="" min="0" placeholder="Qunt" aria-label="Recipient's username with two button addons">
+                          <button class="btn btn-sm btn-outline-success" type="button"> <i class="bi bi-cart-plus-fill mx-1"></i>Add Cart</button> 
+                          <button class="btn btn-sm btn-outline-success" type="button"><i class="bi bi-bag-heart-fill mx-1"></i>Buy</button>
+                          <a href="{% url 'store:products_list' %}" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left-square mx-1"></i>Back</a>
+                      </div>
+                    </li>
+                   
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="text-muted mx-3 mb-3">
+            <div class="card text-start shadow">
+                <div class="card-body m-2">
+                    <nav>
+                        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                          <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">Description</button>
+                          <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">Retting and comments</button> 
+                        </div>
+                      </nav>
+                        <!--   'suppliers','stores','product_name','part_number','cost',
+                        'price','discount','quantity','category','brand',
+                        'specification','description','barcode','tags','label',
+                        'return_police','states','available','images','shelf_no','slug',
+                        'created','update'-->
+                      <div class="tab-content m-1" id="nav-tabContent">
+                        <div class="tab-pane fade show active " id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                            <div class="table-responsive">
+                                <table class="table">
+                                  <thead>
+                                    <tr>
+                                      <th class="th-lg" style="text-overflow: ellipsis; white-space: normal; overflow: hidden; "></th>
+                                      <th class="th-lg-percent" style="text-overflow: ellipsis; white-space: normal; overflow: hidden; "></th>
+                                    </tr>
+                                  </thead>
+                                <tbody>
+                                <tr>
+                                  <td><small class="text-start">Description </small></td>
+                                  <td style="text-overflow: ellipsis; white-space: normal; overflow: hidden; "><small class="text-muted text-break">
+                                    {{productDetail.description}}</small>
+                                   </td> 
+                                </tr>
+                                <tr>
+                                
+                                <td><small class="text-start">Suppliers </small></td>
+                                <td><a data-bs-toggle="modal" data-bs-target="#sellerBackdrop">
+                                  <small class="text-muted">{{productDetail.suppliers}}</small>
+                                  <i class="bi bi-arrows-fullscreen mx-2"></i></a>
+                                </td>
+                                </tr>
+                                <tr>
+                                
+                                <td><small class="text-start">Stores  </small></td>
+                                <td> <small class="text-muted ">{{productDetail.stores}}</small></td>
+                                </tr>
+                                <tr>
+                                <td><small class="text-start">Product Name </small></td>
+                                <td><small class="text-muted ">{{productDetail.product_name}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">Part Number </small></td>
+                                    <td><small class="text-muted ">{{productDetail.part_number}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">Category  </small></td>
+                                    <td><small class="text-muted ">{{productDetail.category}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">Brand </small></td>
+                                    <td><small class="text-muted ">{{productDetail.brand}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">made by </small></td>
+                                    <td><small class="text-muted ">{{productDetail.brand.made_in}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">Return police </small></td>
+                                    <td><small class="text-muted ">{{productDetail.return_police}}</small></td>
+                                </tr>
+                                <tr>
+                                    <td><small class="text-start">Specifications</small></td>
+                                    <td><a data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+                                      <small class="text-muted">{{productDetail.specification.specifications_code}}</small>
+                                      <i class="bi bi-arrows-fullscreen mx-2"></i></a></td>
+                                </tr>
+                                </tbody>
+                                </table>
+                              </div>
+                            
+                        </div>
+                        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab" tabindex="0">
+                         Retting and comments
+                        </div>
+                      </div>
+                </div>
+              </div>
+        </div>
+      </div>
+  
+      <!-- End Example Code -->
+      
+     <!-- product specification -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-lg modal-dialog-scrollable">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6 class="modal-title fs-5" id="staticBackdropLabel">Specifications Details</h6>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="table-responsive">
+                    <table class="table">
+                  
+                    <tbody>
+                    <tr>
+                    
+                    <td><small class="text-start">Instruction </small></td>
+                    <td><small class="text-muted ">{{productDetail.specification.instruction}}</small></td>
+                    </tr>
+                    <tr>
+                    
+                    <td> <small class="text-start">Warning </small></td>
+                    <td><small class="text-muted ">{{productDetail.specification.warning}}</small></td>
+                    </tr>
+                    <tr>
+                    <td><small class="text-start">Expiration </small></td>
+                    <td> <small class="text-muted ">{{productDetail.specification.expiration}}</small></td>
+                    </tr>
+                    <tr>
+                        <td><small class="text-start">Weight </small></td>
+                        <td> <small class="text-muted ">{{productDetail.specification.weight}}</small></td>
+                    </tr>
+                    <tr>
+                        <td><small class="text-start">Color </small></td>
+                        <td> <small class="text-muted ">{{productDetail.specification.color}}</small></td>
+                    </tr>
+                    <tr>
+                        <td><small class="text-start">Type </small></td>
+                        <td> <small class="text-muted ">{{productDetail.specification.type}}</small></td>
+                    </tr>
+                    <tr>
+                        <td><small class="text-start">Industry </small></td>
+                        <td> <small class="text-muted ">{{productDetail.specification.industry}}</small></td>
+                    </tr>
+                    <tr>
+                        <td><small class="text-start">Application </small></td>
+                        <td> <small class="text-muted ">{{productDetail.specification.application}}</small></td>
+                    </tr>
+                    </tbody>
+                    </table>
+                  </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+     <!-- about seller information -->
+     <div class="modal fade" id="sellerBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="sellerBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog  modal-lg modal-dialog-scrollable">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6 class="modal-title fs-5" id="staticBackdropLabel">Suppliers Details</h6>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <div class="table-responsive">
+                  <table class="table">
+                
+                  <tbody>
+                  <tr>
+                  
+                  <td><small class="text-start">Company Name </small></td>
+                  <td><small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                  
+                  <td> <small class="text-start">Licenses TIN</small></td>
+                  <td><small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                  <td><small class="text-start">Licenses Expiration </small></td>
+                  <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                      <td><small class="text-start">Contact Name </small></td>
+                      <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                      <td><small class="text-start">Contact phone </small></td>
+                      <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                      <td><small class="text-start">contact email </small></td>
+                      <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                      <td><small class="text-start">Locations </small></td>
+                      <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  <tr>
+                      <td><small class="text-start">Retting</small></td>
+                      <td> <small class="text-muted ">{{productDetail.suppliers}}</small></td>
+                  </tr>
+                  </tbody>
+                  </table>
+                </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

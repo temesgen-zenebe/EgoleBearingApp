@@ -1,0 +1,161 @@
+{% extends "_base.html" %}
+{% load static %}
+{% block javascript %}
+   <script type="text/javascript" src="{% static 'JS/main.js' %}" defer ></script>
+{% endblock %}
+{% block title %}Product List{% endblock %}
+{% block main %}
+<div class="container " style="max-width: 99%;">
+
+  <div class="album py-3">
+   
+    <div class="container">
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 my-5  border-0 ">
+        <div class="col-12 ">
+          <div class="card shadow-sm border-0">
+            <div class="input-group py-auto ">
+             <button type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-funnel-fill"></i>Filter By</button>
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="mx-2">catagory</span>
+              </button>
+              <ul class="dropdown-menu" style="">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+              <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+              <span class="mx-2">Brand</span>
+              </button>
+              <ul class="dropdown-menu" style="">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Separated link</a></li>
+              </ul>
+           </div>
+          </div>
+        </div>
+      </div>
+      <hr/>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+        {% if products_list %}
+        {% for product in products_list %}
+        <div class="col ">
+          <div class="card shadow-sm">
+            <div class="d-flex justify-content-end">
+              {% if product.tags %}
+                  <span class="badge text-bg-danger m-1 ">{{product.tags}}</span>
+              {% endif %}
+              {% if product.label %}
+                  <span class="badge text-bg-primary m-1">{{product.label}}</span>
+              {% endif %} 
+            </div>
+            {% if product.images %}
+            <img src="{{product.images.image1.url}}" alt="{{product.images.alt}}" width="100%" height="225">
+            {% else %}
+            <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+            {% endif %}
+            <div class="card-body">
+              <p class="card-text">{{product.part_number}} {{product.product_name}} {{product.brand}}</p>
+              <div class="card-text">
+                <div class="d-flex justify-content-start gap-1 ">
+                {% if product.discount %}
+                <h6>${{product.price}}</h6>
+                <span class="text-decoration-line-through text-danger mx-1"><small class="text-muted ">{{product.price}}</small></span>
+                {% else %}
+                <p class="card-text"> {{product.price}}</p>
+                {% endif %}  
+                <small class="text-muted">Unit price</small>
+                </div>
+              </div>
+              
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="">
+                  <small class="text-muted">4.9<i class="bi bi-star-fill mx-1 text-warning"></i></small>
+                  <small class="text-muted">100 <i class="bi bi-chat-left-text mx-1"></i></small>
+                  <small class="text-muted"><i class="bi bi-share-fill mx-1"></i></small>
+                  </div>
+                <div class="btn-group">
+                  <a href=""type="button" class="btn btn-sm btn-outline-secondary"> Add <i class="bi bi-cart-plus"></i></a>
+                  <a href="{% url 'store:product_detail' product.slug %}" type="button" class="btn btn-sm btn-outline-secondary">Details</a>
+                </div>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+        {% else %}
+        <div class="alert alert-success" role="alert">
+          <h4 class="alert-heading">oops sorry!!</h4>
+          <p>we think we do not have a product for now or the Server got some complicationa we will get in tech soon !!</p>
+          <hr>
+          <p class="mb-0">Thanks for know, try agin latter!!</p>
+        </div>
+        {% endif %}
+          
+      </div>
+    </div>
+</div>
+
+
+
+    <div class="album py-5">
+        <div class="container">
+    
+          <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 ">
+            {% for product in products_list %}
+            <div class="col ">
+              <div class="card shadow">
+                <div class="d-flex justify-content-end">
+                    {% if product.tags %}
+                        <span class="badge text-bg-danger m-1 ">{{product.tags}}</span>
+                    {% endif %}
+                    {% if product.label %}
+                        <span class="badge text-bg-primary m-1">{{product.label}}</span>
+                    {% endif %}
+                    
+                </div>
+                {% if product.images.image3.url %} 
+                <img src="{{product.images.image3.url}}" alt="{{product.images.alt}}" width="100%" height="225">
+                {% else %}
+                <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
+                {% endif %}
+                <div class="card-body">
+                  <div class="d-flex justify-content-between ">
+                  <!--<p class="card-text">{{product.description|truncatechars:100}}</p>-->
+                  <div class="card-text mx-1"><p>{{product.part_number}} {{product.product_name}} {{product.brand}}</p></div>
+                  <div class="card-text">
+                    {% if product.discount %}
+                    <h5 >${{product.price}}</h5>
+                    <span class="text-decoration-line-through text-danger mx-1">
+                    <small class="text-muted ">{{product.price}}</small></span>
+                    {% else %}
+                       {{product.price}}
+                    {% endif %}  
+                  </div>
+                  </div>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Add <i class="bi bi-cart-plus"></i></button>
+                      <a href="{% url 'store:product_detail' product.slug %}" type="button" class="btn btn-sm btn-outline-secondary">Details</a>
+                    </div>
+                    <div class="">
+                    <small class="text-muted">4.9<i class="bi bi-star-fill mx-1 text-warning"></i></small>
+                    <small class="text-muted">100 <i class="bi bi-chat-left-text mx-1"></i></small>
+                    <small class="text-muted"><i class="bi bi-share-fill mx-1"></i></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {% endfor %}
+            
+          </div>
+        </div>
+      </div>
+</div>
+{% endblock %}

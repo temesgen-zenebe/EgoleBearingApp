@@ -1,0 +1,169 @@
+{% extends "pages/seller_dashboard.html" %}
+{% load static %}
+
+{%block mainDash %}
+<div class="my-3 mx-2">
+    <div class="card me-4" style="width: 68rem;">
+        <div class="card-header bg-white py-1">
+            <div class="d-flex justify-content-between btn-toolbar my-2">
+               
+                <div class="text-end d-flex justify-content-even gap-3" style="width: 40rem;">
+                    <div class="">
+                       <form role="search">
+                        
+                            <div class="input-group input-group-sm mb-3">
+                             <input class="form-control form-control-sm" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+                             <datalist id="datalistOptions">
+                               <option value="San Francisco">
+                               </option><option value="New York">
+                               </option><option value="Seattle">
+                               </option><option value="Los Angeles">
+                               </option><option value="Chicago">
+                               </option>
+                             </datalist>
+                            <button type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-binoculars"></i></button>
+                           </div>
+                    
+                        </form>
+                    </div>
+                    <div class="">
+                      <div class="input-group gap-2">
+                       <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-funnel mx-2"></i>Catagory</button>
+                       <ul class="dropdown-menu dropdown-menu-end"  style="">
+                        <li><a class="dropdown-item" href="#">Action before</a></li>
+                        <li><a class="dropdown-item" href="#">Another action before</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                       </ul>
+                    
+                       <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-funnel mx-2"></i>Brand</button>
+                       <ul class="dropdown-menu dropdown-menu-start" style="">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="#">Separated link</a></li>
+                       </ul>
+                     </div>
+                   </div>
+                </div>
+                <div class="">
+                    <div class="input-group gap-2">
+                     <button class="btn btn-sm btn-outline-secondary " type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-share mx-2"></i>Share</button>
+                     <button class="btn btn-sm btn-outline-secondary " type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-upload mx-2"></i>Export</button>
+                     <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-calendar3 mx-2" width="24" height="20"></i>This week</button>
+                     <ul class="dropdown-menu dropdown-menu-start" style="">
+                      <li><a class="dropdown-item" href="#">Action</a></li>
+                      <li><a class="dropdown-item" href="#">Another action</a></li>
+                      <li><a class="dropdown-item" href="#">Something else here</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="#">Separated link</a></li>
+                     </ul>
+                   </div>
+                 </div>
+              </div>
+        </div>
+        <div class="card-body my-3">
+            <div class="table-responsive">
+                <table class="table table-sm">
+                <thead>
+                    <tr>
+                     <!--   'suppliers','stores','product_name','part_number','cost',
+                        'price','discount','quantity','category','brand',
+                        'specification','description','barcode','tags','label',
+                        'return_police','states','available','images','shelf_no','slug',
+                        'created','update'-->
+                    <th scope="col">#</th>
+                    <th scope="col th-lg">suppliers</th>
+                    <th scope="col th-lg">stores</th>
+                    <th scope="col th-lg">name</th>
+                    <th scope="col th-lg">partNumber</th>
+                    <th scope="col th-lg">cost</th>
+                    <th scope="col th-lg">price</th>
+                    <th scope="col th-lg">discount</th>
+                    <th scope="col th-lg">quantity</th>
+                    <th scope="col th-lg">category</th>
+                    <th scope="col th-lg">brand</th>
+                    <th scope="col th-lg">specification</th>
+                    <th scope="col th-lg">barcode</th>
+                    <th scope="col th-lg">tags</th>
+                    <th scope="col th-lg">label</th>
+                    <th scope="col th-lg">return</th>
+                    <th scope="col th-lg">states</th>
+                    <th scope="col th-lg">available</th>
+                    <th scope="col th-lg">images</th>
+                    <th scope="col th-lg">shelfNo.</th>
+                    <th scope="col th-lg">slug</th>
+                    <th scope="col th-lg">created</th>
+                    <th scope="col th-lg">update</th>
+                    <th scope="col th-lg">Action</th>
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if List_product %}
+                    {% for product in List_product %}
+                    {% if product.suppliers %}
+                    <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{product.suppliers}}</td>
+                    <td>{{product.stores}}</td>
+                    <td>{{product.product_name}}</td>
+                    <td>{{product.part_number}}</td>
+                    <td>{{product.cost}}</td>
+                    <td>{{product.price}}</td>
+                    <td>{{product.discount}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.brand}}</td>
+                    <td>{{product.specification}}</td>
+                    <td>{{product.barcode}}</td>
+                    <td>{{product.tags}}</td>
+                    <td>{{product.label}}</td>
+                    <td>{{product.return_police}}</td>
+                    <td>{{product.states}}</td>
+                    <td>{{product.available}}</td>
+                    <td>{{product.images}}</td>
+                    <td>{{product.shelf_no}}</td>
+                    <td>{{product.slug}}</td>
+                    <td>{{product.created}}</td>
+                    <td>{{product.update}}</td>
+                    <td>
+                        <div class="btn-group me-2 gap-2" role="group" aria-label="First group">
+                            <a href="{% url 'store:updated_ProductStock' product.slug %}" type="button" class="btn btn-sm btn-outline-primary" fdprocessedid="b0nvn"><i class="bi bi-pencil-square"></i></a>
+                            <a href="{% url 'store:delete_Product' product.slug %}" type="button" class="btn btn-sm btn-outline-primary" fdprocessedid="b0nvn"><i class="bi bi-trash"></i></a>
+                        </div>
+                    </td>
+                    </tr>
+                    {% endif %}
+                    {% endfor %}
+                    {% endif %}
+                    
+                </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="card-footer text-muted bg-white">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination justify-content-center pagination-sm">
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                    </a>
+                  </li>
+                  <li class="page-item"><a class="page-link" href="#">1</a></li>
+                  <li class="page-item"><a class="page-link" href="#">2</a></li>
+                  <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
+                    <a class="page-link" href="#" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+        </div>
+      </div>
+     
+</div>
+{%endblock mainDash%}

@@ -1,0 +1,21 @@
+{% extends "pages/seller_dashboard.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block javascript %}
+   <script type="text/javascript" src="{% static 'JS/main.js' %}" defer ></script>
+{% endblock %}
+{% block title %}Add Specification {% endblock %}
+{%block mainDash %}
+    <div class="card border shadow mx-auto mb-3" style="max-width: 40rem">
+        <div class="card-header bg-white text-center">Add Specification</div>
+        <div class="card-body">
+          
+          <form method="post" enctype="multipart/form-data" class="m-auto" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Add" class="form-control btn btn-sm btn-outline-primary my-3">
+            <a  href="{% url 'store:List_products'%}" class="form-control btn btn-sm btn-outline-primary">Cancel</a>
+          </form>
+        </div>
+      </div>
+{%endblock mainDash%}
