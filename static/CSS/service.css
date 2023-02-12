@@ -54,7 +54,9 @@ section {
 .display-6 {
     font-size: 0.8rem; }
 
-
+a.acct{
+    font-size: 14px;
+}
 
 
 /* sear*/
@@ -87,7 +89,7 @@ section {
     }
 
     .searchbar:hover > .search_icon{
-    background: rgb(43, 42, 42);
+    background: rgb(2, 85, 9);
     color: #ebe9f5;
     }
 

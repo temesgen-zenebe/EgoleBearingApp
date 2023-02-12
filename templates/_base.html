@@ -80,12 +80,12 @@
           </ul>
           {% else %}
           <!--user cart-->
-          <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-            <i class="bi bi-cart-plus-fill" style="font-size: 1rem;"></i><span class="cart-qunt px-1">10</span>
+          <button type="button" class="btn btn-sm btn-outline-success border-0" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <i class="bi bi-cart-plus-fill" style="font-size: 1.3rem;"></i><span class="cart-qunt px-1">10</span>
           </button>
         
             <!--user manu-->
-            <div class="navbar-nav dropdown mx-3 my-3">
+            <div class="navbar-nav dropdown mx-2 my-3">
               <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                 {% if user.avatar and not form.avatar.errors %}
                   <img src="{{ user.avatar.url }}" alt="Avatar" width="32" height="32" class="rounded-circle"/>
@@ -96,13 +96,13 @@
               
               <ul class="dropdown-menu  mx-0 shadow w-800px">
                 <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'pages:dashboard'%}">
+                  <a class="dropdown-item d-flex gap-2 align-items-center nav-item acct" href="{% url 'pages:dashboard'%}">
                     <i class="bi bi-speedometer mx-2"></i>
                      Dashbord <!--for seller-->
                   </a>
                 </li>
                 <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center" href="{% url 'my-account' %}">
+                  <a class="dropdown-item d-flex gap-2 align-items-center acct" href="{% url 'my-account' %}">
                     <i class="bi bi-person-fill-gear mx-2"></i>
                     My Account
                   </a>
@@ -111,8 +111,8 @@
                 <li>
                   <form method="post" action="{% url 'account_logout' %}">
                     {% csrf_token %}
-                    <button class="btn dropdown-item dropdown-item-danger d-flex gap-2 align-items-center">
-                      <i class="bi bi-box-arrow-left mx-2"></i>Log out</button>
+                    <a class="btn dropdown-item dropdown-item-danger  d-flex gap-2 align-items-center acct">
+                      <i class="bi bi-box-arrow-left mx-2"></i>Log out</a>
                     </form>
                  
                 </li>
@@ -215,8 +215,8 @@
                 </div>
             </div>
             <div class="modal-footer">
-              <a href="{% url 'store:products_list' %}" type="button" class="btn btn-sm btn-outline-primary" >Add More</a>
-              <button type="button" class="btn btn-sm btn-outline-success">Go Checkout</button>
+              <a href="{% url 'store:products_list' %}" type="button" class="btn btn-sm btn-outline-info" ><i class="bi bi-caret-up mx-1"></i>Continue shopping</a>
+              <button type="button" class="btn btn-sm btn-outline-success">Proceed to checkout <i class="bi bi-caret-right mx-1"></i></button>
             </div>
           </div>
         </div>
