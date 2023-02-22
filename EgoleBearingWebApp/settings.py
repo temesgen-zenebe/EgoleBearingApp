@@ -52,6 +52,11 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig', 
     'store.apps.StoreConfig', 
     'users.apps.UsersConfig',
+    'cart.apps.CartConfig',
+    'orders.apps.OrdersConfig',
+    'paypal.standard.ipn',
+    'payment.apps.PaymentConfig',
+    'cupons.apps.CuponsConfig',
     
 ]
 
@@ -170,7 +175,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-
+CART_SESSION_ID = 'cart'
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static',

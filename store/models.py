@@ -5,7 +5,6 @@ import barcode   # additional imports
 from barcode.writer import ImageWriter
 from io import BytesIO
 from django.core.files import File
-from common.utils.text import unique_slug
 from django.urls import reverse
 from django.utils import timezone
 import random

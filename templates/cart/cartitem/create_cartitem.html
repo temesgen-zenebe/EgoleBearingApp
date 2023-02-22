@@ -1,0 +1,22 @@
+{% extends "_base.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block javascript %}
+   <script type="text/javascript" src="{% static 'JS/main.js' %}" defer ></script>
+{% endblock %}
+{% block title %}Product Add cart{% endblock %}
+{% block main %}
+<div class="container " style="max-width: 60%;">
+        <div class="card-header bg-white text-center">Add cart</div>
+        <div class="card-body">
+          
+          <form method="post" enctype="multipart/form-data" class="m-auto" novalidate>
+            {% csrf_token %}
+            {{ form|crispy }}
+            <input type="submit" value="Add" class="form-control btn btn-sm btn-outline-primary my-3">
+            <a  href="{% url 'store:List_products'%}" class="form-control btn btn-sm btn-outline-primary">Cancel</a>
+          </form>
+        </div>
+        
+</div>
+{% endblock %}

@@ -164,7 +164,7 @@ table th {
 
 .total-price table {
   margin-top: 5px ;
-  border-top: 2px solid #94f794;
+  border-top: 2px solid #545554;
   width: 100%;
   max-width: 400px;
 }
@@ -175,4 +175,14 @@ td:last-child {
 
 th:last-child {
   text-align: right;
+}
+
+.list-group {
+  --bs-list-group-border-width: 0px;
+}
+
+.td-cart img {
+  width: 80px;
+  height: 70px;
+  margin-right: 10px;
 }

@@ -138,6 +138,14 @@
                     </li>
                     <li class="list-group-item">
                       <div class="input-group row row-cols-1 row-cols-sm-1 row-cols-md-4 g-1 gap-1" >
+                        
+                          <form action="{% url 'cart:CartAdd' productDetail.id %}" method="post" class="add">
+                            {{ item.update_quantity_form.quantity }}
+                            {{ item.update_quantity_form.update }}
+                            {% csrf_token %}
+                            <input type="submit" value="Обновить">
+                          </form>
+                        
                           <input type="number" class="form-control form-control-sm text-center"  value="" min="0" placeholder="Qunt" aria-label="Recipient's username with two button addons">
                           <button class="btn btn-sm btn-outline-success" type="button"> <i class="bi bi-cart-plus-fill mx-1"></i>Add Cart</button> 
                           <button class="btn btn-sm btn-outline-success" type="button"><i class="bi bi-bag-heart-fill mx-1"></i>Buy</button>
