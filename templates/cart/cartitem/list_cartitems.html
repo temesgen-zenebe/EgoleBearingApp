@@ -23,12 +23,12 @@
                     </div>
                     <div class="col ">
                       <div class="card border-0">
-                          <p class="card-title">Total Items : 100 quantity</hp>
+                          <p class="card-title">Total Items Quantity: {{total_item}} </p>
                       </div>
                     </div>
                     <div class="col ">
                       <div class="card border-0">
-                        <p class="card-title"> Total Price : $ 20000.22 </hp>
+                        <p class="card-title"> Total Price : $ {{price_total}}</p>
                       </div>
                     </div>
                    
@@ -51,8 +51,10 @@
                          <tbody>
                           {% for item in cart_Item %}
                           <tr>
+                          
                             <td  class="td-cart">
                               <div class="cart-info">
+                                <a href="{% url 'store:product_detail' item.product.slug %}" >
                                 <ul class="list-group border-0">
                                     <li class="list-group-item d-flex justify-content-between align-items-start">
                                       <div class="me-auto d-flex gap-1" >
@@ -64,23 +66,23 @@
                                             {% endif %}
                                         </div>
                                         <div>
+                                        
                                         <div class="fw-bold">{{item.product.part_number}} {{item.product.brand}}</div>
+                                        
                                          <div><small>Price ${{item.product.price}} </small></div>
                                          <small><a href="">Remove</a></small> |
                                          <small><a href="">Update</a></small>
                                         </div>
                                       </div>
-                                      
-                              
                                     </li>
                                 </ul>
-                                  
-                                 
+                                </a>
                               </div>
                             </td>
                             <td  class="td-cart"><input class="form-control form-control-sm text-start" type="number" value="{{item.quantity}}" min="1" placeholder="qunt"/></td>
-                            <td  class="td-cart" >${{item.price_total}}</td>
-                          </tr>
+                            <td  class="td-cart" >${{item.get_subtotal}}</td>
+                          
+                        </tr>
                           {% endfor %}
                          
                           </tbody>
@@ -89,8 +91,8 @@
                         <div class="total-price">
                           <table class="table-cart">
                             <tr>
-                              <td class="td-cart"><h6>Subtotal</h6></td>
-                              <td class="td-cart">${{item.price_subtotal}}</td>
+                              <td class="td-cart"><h6>Total</h6></td>
+                              <td class="td-cart">${{price_total}}</td>
                             </tr>
                           </table>
                         </div>

@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from django.http import JsonResponse
 import json
+from decimal import Decimal
 from store.models import products
 from cart.models import Cart,CartItem
 from .forms import CartAddProductForm 
@@ -15,9 +16,13 @@ def cartList(request):
     if request.user.is_authenticated:
         cart ,created = Cart.objects.get_or_create(user = request.user)
         cart_Item = cart.cart_item.all()
+        price_total = sum([Decimal(item.get_subtotal) for item in cart_Item])
+        total_item = sum([Decimal(item.quantity) for item in cart_Item])
     context = {
         "cart": cart,
-        "cart_Item" : cart_Item
+        "cart_Item" : cart_Item,
+        'price_total' : price_total,
+        'total_item': total_item
     }
     return render(request, 'cart/cartitem/list_cartitems.html' ,context)
 

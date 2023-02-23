@@ -12,8 +12,8 @@ from .models import (
 @admin.register(products)
 class productsAdmin(admin.ModelAdmin):
     model = products
-    list_display = ['suppliers','stores','product_name','part_number','cost',
-                    'price','discount','quantity','category','brand',
+    list_display = ['suppliers','stores','product_name','part_number','cost', 'profit_present',
+                    'price','discount_present','off_price','quantity','category','brand',
                     'specification','description','barcode','tags','label',
                     'return_police','states','available','shipping','images',
                     'shelf_no','slug','created','update']

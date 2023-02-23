@@ -157,8 +157,10 @@ class products(models.Model):
     product_name = models.CharField(max_length=300,blank=True, null=True)
     part_number = models.CharField(max_length=200 ,blank=False , null=False)
     cost =  models.DecimalField(default=0.00, decimal_places=2, max_digits=10)
+    profit_present =  models.PositiveSmallIntegerField(default=1)
     price = models.DecimalField(default=0.00, decimal_places=2, max_digits=10)
-    discount =  models.PositiveSmallIntegerField(default=1)
+    discount_present =  models.PositiveSmallIntegerField(default=0)
+    off_price = models.DecimalField(default=0.00, decimal_places=2, max_digits=10, blank=True, null=True)
     quantity = models.PositiveSmallIntegerField(default=0)
     category = models.ForeignKey(Category , on_delete=models.CASCADE,blank=True ,null=True)
     brand = models.ForeignKey(Brand , on_delete=models.CASCADE,blank=True ,null=True)
@@ -187,7 +189,19 @@ class products(models.Model):
         self.created = timezone.now()
         self.save()
     
-    def save(self, *args, **kwargs):          # overriding save() 
+    def save(self, *args, **kwargs):  
+        
+        if not self.profit_present == 1:
+            self.price = self.cost + ((self.cost*self.profit_present)/100)
+        else:
+            self.price = self.cost + ((self.cost*30)/100) # default profit 30%
+            
+        #discount_price  
+        if self.discount_present == 0:
+           self.off_price = 0.00
+        else: 
+           self.off_price = self.price - ((self.price * self.discount_present)/100)      
+        # overriding save() 
         COD128 = barcode.get_barcode_class('code128')
         rv = BytesIO()
         code = COD128(f'{self.product_name}-{self.part_number}', writer=ImageWriter()).write(rv)

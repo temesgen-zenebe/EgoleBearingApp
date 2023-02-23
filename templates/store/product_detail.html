@@ -104,12 +104,14 @@
                     <li class="list-group-item">
                       <div class="d-flex justify-content-start gap-3 ">
                         <small class="btn btn-sm ">Unit price : </small>
-                        <h5 class="">$ {{productDetail.price}}</h5>
+                        {% if productDetail.discount_present %}
+                        <h5 class="">$ {{productDetail.off_price}}</h5>
                         <small class="text-danger text-decoration-line-through"> $ {{productDetail.price}}</small>
-                       
+                        {% else %}
+                            {{productDetail.price}}
+                        {% endif %}  
                         
                       </div>
-      
                     </li>
                     <li class="list-group-item"> 
                       <small class="btn btn-sm ">Shipping : </small>
@@ -137,17 +139,9 @@
                       <small class="px-1">{{productDetail.description|truncatewords:28}}</small>
                     </li>
                     <li class="list-group-item">
-                      <div class="input-group row row-cols-1 row-cols-sm-1 row-cols-md-4 g-1 gap-1" >
-                        
-                          <form action="{% url 'cart:CartAdd' productDetail.id %}" method="post" class="add">
-                            {{ item.update_quantity_form.quantity }}
-                            {{ item.update_quantity_form.update }}
-                            {% csrf_token %}
-                            <input type="submit" value="Обновить">
-                          </form>
-                        
-                          <input type="number" class="form-control form-control-sm text-center"  value="" min="0" placeholder="Qunt" aria-label="Recipient's username with two button addons">
-                          <button class="btn btn-sm btn-outline-success" type="button"> <i class="bi bi-cart-plus-fill mx-1"></i>Add Cart</button> 
+                      <div class="input-group row row-cols-1 row-cols-sm-1 row-cols-md-4 g-1 gap-1 cart_parent" >
+                          <input type="number" class="form-control form-control-sm text-center"  value="1" min="1"  max="{{productDetail.quantity}}" placeholder="Qunt" aria-label="Recipient's username with two button addons">
+                          <button value ={{productDetail.slug}} class="btn btn-sm btn-outline-success add_cart" type="button"> <i class="bi bi-cart-plus-fill mx-1"></i>Add Cart</button> 
                           <button class="btn btn-sm btn-outline-success" type="button"><i class="bi bi-bag-heart-fill mx-1"></i>Buy</button>
                           <a href="{% url 'store:products_list' %}" type="button" class="btn btn-sm btn-outline-secondary"><i class="bi bi-arrow-left-square mx-1"></i>Back</a>
                       </div>
