@@ -31,163 +31,164 @@
     
     <body class="">
       <div class="clearfix">
-      <!--navbars-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light py-1" aria-label="Eighth navbar example">
-        <div class="container">
-          <a href="{% url 'pages:homepage'%}" class="navbar-brand d-flex align-items-center  mb-2 mb-lg-0 text-dark text-decoration-none">
-            <i class="bi bi-globe text-success mx-2" width="20" height="20"></i>
-                 <span class="text-success">EGOLE</span>BEARING
-           </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-    
-          <div class="collapse navbar-collapse mx-4" id="navbarsExample07">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="{% url 'pages:homepage'%}">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="{% url 'pages:about-us'%}">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link " href="{% url 'pages:contact-us'%}">Contact</a>
-              </li>
-              {% if user.is_staff %}
-              <li class="nav-item">
-                <a class="nav-link" href="/admin/">Admin</a>
-              </li>
-              {% endif %}
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Shap</a>
-                <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="{% url 'store:products_list' %}">Products</a></li>
-                  <li><a class="dropdown-item" href="#">Services</a></li>
-                  
-                </ul>
-              </li>
-            </ul>
-            <div class="navbar-nav m-2  h-100 border-0 rounded bg-outline-success">
-              <div class="d-flex justify-content-start h-100  ">
-                    <div class="searchbar">
-                      <input class="search_input" type="text" name="" placeholder="Search...">
-                      <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-                    </div>
-              </div>
-          </div>
-          {% if not user.is_authenticated %}
-          <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-            <li class="nav-item"><a class="nav-link" href="{% url 'account_login'%}">Log in</a></li>
-            <li class="nav-item"><a class="nav-link" href="{% url 'account_signup'%}">Sign up</a></li>
-          </ul>
-          {% else %}
-          <!--user cart-->
-          <a href="{% url 'cart:carList' %}" type="button" class="btn btn-sm btn-outline-success border-0" >
-            <i class="bi bi-cart-plus-fill" style="font-size: 1.3rem;"></i><span class="cart-qunt px-1">10</span>
-          </a>
-        
-            <!--user manu-->
-            <div class="navbar-nav dropdown mx-2 my-3">
-              <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                {% if user.avatar and not form.avatar.errors %}
-                  <img src="{{ user.avatar.url }}" alt="Avatar" width="32" height="32" class="rounded-circle"/>
-                {% else %}
-                  <i class="bi bi-person-circle"  width="32" height="32" class="rounded-circle"></i>
-                {% endif %} 
-              </a>
-              
-              <ul class="dropdown-menu  mx-0 shadow w-800px">
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center nav-item acct" href="{% url 'pages:dashboard'%}">
-                    <i class="bi bi-speedometer mx-2"></i>
-                     Dashbord <!--for seller-->
-                  </a>
+        <!--navbars-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-light py-1" aria-label="Eighth navbar example">
+          <div class="container">
+            <a href="{% url 'pages:homepage'%}" class="navbar-brand d-flex align-items-center  mb-2 mb-lg-0 text-dark text-decoration-none">
+              {% comment %} <i class="bi bi-globe text-success mx-2" width="20" height="20"></i> {% endcomment %}
+              <img src="{% static 'IMAGES/favicon.ICO' %}" alt="Avatar" width="32" height="32" class="rounded-circle px-3 my-2"/>
+                  <span class="text-success">EGOLE</span><span class="text-secondary px-2">BEARING</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+      
+            <div class="collapse navbar-collapse mx-4" id="navbarsExample07">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="{% url 'pages:homepage'%}">Home</a>
                 </li>
-                <li>
-                  <a class="dropdown-item d-flex gap-2 align-items-center acct" href="{% url 'my-account' %}">
-                    <i class="bi bi-person-fill-gear mx-2"></i>
-                    My Account
-                  </a>
+                <li class="nav-item">
+                  <a class="nav-link" href="{% url 'pages:about-us'%}">About</a>
                 </li>
-                <li><hr class="dropdown-divider"></li>
-                <li>
-                  <form method="post" action="{% url 'account_logout' %}">
-                    {% csrf_token %}
-                    <div class="fw-bold ">
-                        <button class="btn btn-sm dropdown-item text-dark">
-                            <i class="bi bi-box-arrow-left mx-2"> </i>Log out
-                        </button>
-                    </div>
-                  </form>
+                <li class="nav-item">
+                  <a class="nav-link " href="{% url 'pages:contact-us'%}">Contact</a>
+                </li>
+                {% if user.is_staff %}
+                <li class="nav-item">
+                  <a class="nav-link" href="/admin/">Admin</a>
+                </li>
+                {% endif %}
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Shap</a>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="{% url 'store:products_list' %}">Products</a></li>
+                    <li><a class="dropdown-item" href="#">Services</a></li>
+                    
+                  </ul>
                 </li>
               </ul>
-            </div>
-          {% endif %}
-          </div>
-        </div>
-      </nav>
-   
-        <main>
-            <div class="m-4">
-              {% if messages %}
-              <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {% for message in messages %}
-                  <div class="alert alert-{{message.tags}}">
-                        {{message}}
+              <div class="navbar-nav my-2  h-100 border-0 rounded bg-outline-success">
+                <div class="d-flex justify-content-start h-100  ">
+                      <div class="searchbar">
+                        <input class="search_input" type="text" name="" placeholder="Search...">
+                        <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
                       </div>
-                    {% endfor %}
-                
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div> 
               </div>
-            	{% endif %}
-            
-             {%block main %}{%endblock main%}
+            {% if not user.is_authenticated %}
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item"><a class="nav-link" href="{% url 'account_login'%}">Log in</a></li>
+              <li class="nav-item"><a class="nav-link" href="{% url 'account_signup'%}">Sign up</a></li>
+            </ul>
+            {% else %}
+            <!--user cart-->
+            <a href="{% url 'cart:carList' %}" type="button" class="btn btn-sm btn-outline-success border-0" >
+              <i class="bi bi-cart-plus-fill" style="font-size: 1.3rem;"></i><span class="cart-qunt px-1">10</span>
+            </a>
+          
+              <!--user manu-->
+              <div class="navbar-nav dropdown mx-2 my-3">
+                <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                  {% if user.avatar and not form.avatar.errors %}
+                    <img src="{{ user.avatar.url }}" alt="Avatar" width="32" height="32" class="rounded-circle"/>
+                  {% else %}
+                    <i class="bi bi-person-circle"  width="32" height="32" class="rounded-circle"></i>
+                  {% endif %} 
+                </a>
+                
+                <ul class="dropdown-menu  mx-0 shadow w-800px">
+                  <li>
+                    <a class="dropdown-item d-flex gap-2 align-items-center nav-item acct" href="{% url 'pages:dashboard'%}">
+                      <i class="bi bi-speedometer mx-2"></i>
+                      Dashbord <!--for seller-->
+                    </a>
+                  </li>
+                  <li>
+                    <a class="dropdown-item d-flex gap-2 align-items-center acct" href="{% url 'my-account' %}">
+                      <i class="bi bi-person-fill-gear mx-2"></i>
+                      My Account
+                    </a>
+                  </li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li>
+                    <form method="post" action="{% url 'account_logout' %}">
+                      {% csrf_token %}
+                      <div class="fw-bold ">
+                          <button class="btn btn-sm dropdown-item text-dark">
+                              <i class="bi bi-box-arrow-left mx-2"> </i>Log out
+                          </button>
+                      </div>
+                    </form>
+                  </li>
+                </ul>
+              </div>
+            {% endif %}
             </div>
+          </div>
+        </nav>
+    
+        <main>
+              <div class="">
+                {% if messages %}
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  {% for message in messages %}
+                    <div class="alert alert-{{message.tags}}">
+                          {{message}}
+                        </div>
+                      {% endfor %}
+                  
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endif %}
+              
+              {%block main %}{%endblock main%}
+              </div>
         </main>
 
-      <!--footer-->
-      <footer class="mx-2 px-4 pt-2 my-md-2 pt-md-5 bg-dark text-light">
-        <div class="row">
-          <div class="col-12 col-md">
-            
-            <a href="{% url 'pages:homepage'%}" class="navbar-brand d-flex align-items-center  mb-2 mb-lg-0 text-dark text-decoration-none">
-              <i class="bi bi-globe text-success mx-2 " width="24" height="19"></i>
-                   <span class="text-success">EGOLE BEARING</span>
-             </a>
-          </div>
-          <div class="col-6 col-md">
-            <h6>Features</h6>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+        <!--footer-->
+        <footer class="mx-2 px-4 pt-2 my-md-2 pt-md-5 bg-dark text-light">
+          <div class="row">
+            <div class="col-12 col-md">
               
-            </ul>
+              <a href="{% url 'pages:homepage'%}" class="navbar-brand d-flex align-items-center  mb-2 mb-lg-0 text-dark text-decoration-none">
+                <i class="bi bi-globe text-success mx-2 " width="24" height="19"></i>
+                    <span class="text-success">EGOLE BEARING</span>
+              </a>
+            </div>
+            <div class="col-6 col-md">
+              <h6>Features</h6>
+              <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Cool stuff</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Random feature</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team feature</a></li>
+                
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h6>Resources</h6>
+              <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
+                
+              </ul>
+            </div>
+            <div class="col-6 col-md">
+              <h6>About</h6>
+              <ul class="list-unstyled text-small">
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
+                <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'pages:terms-polices' %}">Terms</a></li>
+              </ul>
+            </div>
           </div>
-          <div class="col-6 col-md">
-            <h6>Resources</h6>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Resource name</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Another resource</a></li>
-              
-            </ul>
+          <div class="container d-flex justify-content-center">
+            <small class="d-block mb-3 text-muted"><p>&copy; Copyright {% now "Y" %} by <a href="{% url 'pages:homepage'%}">EgoleBearing.com</a></p></small>
           </div>
-          <div class="col-6 col-md">
-            <h6>About</h6>
-            <ul class="list-unstyled text-small">
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Team</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Locations</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="#">Privacy</a></li>
-              <li class="mb-1"><a class="link-secondary text-decoration-none" href="{% url 'pages:terms-polices' %}">Terms</a></li>
-            </ul>
-          </div>
-        </div>
-        <div class="container d-flex justify-content-center">
-          <small class="d-block mb-3 text-muted"><p>&copy; Copyright {% now "Y" %} by <a href="{% url 'pages:homepage'%}">EgoleBearing.com</a></p></small>
-        </div>
-      </footer>
-    </div>
+        </footer>
+      </div>
         <script type="text/javascript"  src="{% static 'JS/main.js' %}" async></script>   
         <script type="text/javascript"  src="{% static 'JS/cart.js' %}" async></script>  
 

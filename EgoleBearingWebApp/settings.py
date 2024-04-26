@@ -49,20 +49,20 @@ INSTALLED_APPS = [
     'allauth.socialaccount',
     
     #local apps
+    'common.apps.CommonConfig',
     'pages.apps.PagesConfig', 
     'store.apps.StoreConfig', 
     'users.apps.UsersConfig',
     'cart.apps.CartConfig',
     'orders.apps.OrdersConfig',
-    'paypal.standard.ipn',
     'payment.apps.PaymentConfig',
     'cupons.apps.CuponsConfig',
     
+   
+  
 ]
 
 SITE_ID = 1
-ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm'
-
 
 AUTHENTICATION_BACKENDS = (
 # Needed to login by username in Django admin, even w/o `allauth`
@@ -70,6 +70,40 @@ AUTHENTICATION_BACKENDS = (
 # `allauth`-specific auth methods, such as login by e-mail
 'allauth.account.auth_backends.AuthenticationBackend',
 )
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+
+
+# AUTHENTICATION SETTINGS
+AUTH_USER_MODEL = 'users.CustomUser'
+LOGIN_URL = 'account_login'
+LOGIN_REDIRECT_URL = 'pages:homepage'
+
+## django-allauth settings
+ACCOUNT_AUTHENTICATION_METHOD = 'email' # Default: 'username'
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAYS = 1 # Default: 3
+ACCOUNT_EMAIL_REQUIRED = True # Default: False
+ACCOUNT_EMAIL_VERIFICATION = 'mandatory' # Default: 'optional'
+ACCOUNT_LOGIN_ATTEMPTS_LIMIT = 5 # Default: 5
+ACCOUNT_LOGIN_ATTEMPTS_TIMEOUT = 300 # Default 300
+ACCOUNT_LOGOUT_REDIRECT_URL = 'account_login' # Default: '/'
+ACCOUNT_USERNAME_REQUIRED = False # Default: True
+
+#create a custom SignupForm class
+ACCOUNT_SIGNUP_FORM_CLASS = 'users.forms.SignupForm' 
 
 CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 CRISPY_TEMPLATE_PACK = "bootstrap5"
@@ -139,26 +173,6 @@ DEFAULT_FROM_EMAIL = 'temf2006@gmail.com'
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# AUTHENTICATION SETTINGS
-AUTH_USER_MODEL = 'users.CustomUser'
-LOGIN_URL = 'account_login'
-LOGIN_REDIRECT_URL = 'pages:homepage'
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
