@@ -1,5 +1,7 @@
 from django.db import models
 from common.utils.text import unique_slug , create_new_ref_number
+from django.core.exceptions import ValidationError
+from django.core.files.images import get_image_dimensions
 from django.db import models
 import barcode   # additional imports
 from barcode.writer import ImageWriter
@@ -20,10 +22,22 @@ import string
 #seller
 #buyer
 
+def validate_brandLogo(value):
+    w, h = get_image_dimensions(value)
+    if w > 200 or h > 200:
+        raise ValidationError('Avatar must be no bigger than 200x200 pixels.')
+
 class Brand(models.Model):
     brand = models.CharField(max_length=100 ,null=True, blank=True)
     made_in = models.CharField(max_length=100,null=True, blank=True)
     specification = models.CharField(max_length=100, null=True, blank=True)
+    logo = models.ImageField(
+        upload_to='brand_logo/%Y/', 
+        blank=True, 
+        null=True,
+        help_text='Image must be 200px by 200px.',
+        validators=[validate_brandLogo],
+    )
     manufactured = models.CharField(max_length=100,blank=True ,null=True)
     slug = models.SlugField(max_length=50, unique=True, null=False, editable=False)
     created = models.DateField(auto_now_add=True)

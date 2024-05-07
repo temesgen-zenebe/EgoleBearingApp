@@ -5,6 +5,35 @@ from django.views.generic import DetailView
 from django.views.generic.edit import UpdateView,CreateView,DeleteView
 from django.views.generic.list import ListView
 from django.contrib import messages
+from django.http import JsonResponse
+from django.views.generic import View
+from django.db.models import Q
+
+
+# class ProductListView(View):
+#     def get(self, request):
+#         # Initial product list rendering
+#         products_list = products.objects.all().order_by('-created')
+#         # Handle category filtering
+#         category = request.GET.get('category')
+#         if category:
+#             products_list = products_list.filter(category__category=category)
+#         return render(request, 'store/products_list.html', {'products_list': products_list})
+
+#     def post(self, request):
+#         # Handle advanced filtering form submission
+#         category = request.POST.get('category')
+#         brand = request.POST.get('brand')
+#         search_query = request.POST.get('search')
+#         filtered_products_list = products.objects.all()
+#         if category:
+#             filtered_products_list = filtered_products_list.filter(category__category=category)
+#         if brand:
+#             filtered_products_list = filtered_products_list.filter(brand__brand=brand)
+#         if search_query:
+#             filtered_products_list = filtered_products_list.filter(Q(part_number__icontains=search_query) | Q(product_name__icontains=search_query))
+#         return render(request, 'store/product_list_partial.html', {'products_list': filtered_products_list})
+
 
    
 class ProductsList(ListView):
@@ -12,6 +41,18 @@ class ProductsList(ListView):
     # specify the model for list view
     model = products
     context_object_name = "products_list" 
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        product = products.objects.all() 
+        context['product_brand'] = {}
+
+        for item in product:
+            brand = item.brand.brand
+            if brand not in context['product_brand']:
+                context['product_brand'][brand] = Brand.objects.filter(brand=brand)
+        return context
+
 
 class SellerProductsList(ListView):
    
@@ -74,12 +115,12 @@ class CategoryCreate(CreateView):
 
 class BrandCreate(CreateView):
     model = Brand
-    fields = ['brand','made_in','manufactured']
+    fields = ['brand','made_in', 'logo', 'manufactured']
     template_name = 'pages/seller/add_product_brand.html'
     success_url = "/seller/products/" 
     
     def form_valid(self, form):
-        messages.success(self.request, "The product Category was created successfully.")
+        messages.success(self.request, "The product Brand was created successfully.")
         return super(BrandCreate,self).form_valid(form)
        
 class StoreCreate(CreateView):

@@ -1,4 +1,4 @@
-{%load static %}
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -23,8 +23,9 @@
     <link rel="stylesheet" href="{% static 'CSS/style.css' %}" />
     <link rel="stylesheet" href="{% static 'CSS/product.css' %}" />
     <link rel="stylesheet" href="{% static 'CSS/service.css' %}" />
-
+   
     {% block javascript %}{% endblock %}
+    {% block stylesheet %}{% endblock %}
     <link rel="shortcut icon" type="image/png" href="{% static 'IMAGES/favicon.ICO' %}">
     <title>{% block title %}{% endblock %} | Hello, egole Bearing app!</title>
     </head>
@@ -36,7 +37,7 @@
           <div class="container">
             <a href="{% url 'pages:homepage'%}" class="navbar-brand d-flex align-items-center  mb-2 mb-lg-0 text-dark text-decoration-none">
               {% comment %} <i class="bi bi-globe text-success mx-2" width="20" height="20"></i> {% endcomment %}
-              <img src="{% static 'IMAGES/favicon.ICO' %}" alt="Avatar" width="32" height="32" class="rounded-circle px-3 my-2"/>
+              <img src="{% static 'IMAGES/favicon.ico' %}" alt="Avatar" width="30" height="30" class="rounded-circle mx-2"/> 
                   <span class="text-success">EGOLE</span><span class="text-secondary px-2">BEARING</span>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample07" aria-controls="navbarsExample07" aria-expanded="false" aria-label="Toggle navigation">
@@ -68,40 +69,40 @@
                   </ul>
                 </li>
               </ul>
-              <div class="navbar-nav my-2  h-100 border-0 rounded bg-outline-success">
-                <div class="d-flex justify-content-start h-100  ">
+              {% comment %} <div class="navbar-nav my-2  h-100 border-0 rounded bg-outline-success">
+                <div class="d-flex justify-content-start h-100">
                       <div class="searchbar">
                         <input class="search_input" type="text" name="" placeholder="Search...">
                         <a href="#" class="search_icon"><i class="fas fa-search"></i></a>
                       </div>
                 </div> 
-              </div>
+              </div> {% endcomment %}
             {% if not user.is_authenticated %}
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            <ul class="navbar-nav mb-2 mb-lg-0">
               <li class="nav-item"><a class="nav-link" href="{% url 'account_login'%}">Log in</a></li>
               <li class="nav-item"><a class="nav-link" href="{% url 'account_signup'%}">Sign up</a></li>
             </ul>
             {% else %}
-            <!--user cart-->
-            <a href="{% url 'cart:carList' %}" type="button" class="btn btn-sm btn-outline-success border-0" >
-              <i class="bi bi-cart-plus-fill" style="font-size: 1.3rem;"></i><span class="cart-qunt px-1">10</span>
-            </a>
-          
+              <!--user cart-->
+              <a href="{% url 'cart:carList' %}" type="button" class="badge rounded-pill text-bg-light p-2" >
+                <i class="bi bi-cart-plus-fill text-info" style="font-size: 1.4rem;"></i><span class="cart-qunt px-1">10</span>
+              </a>
               <!--user manu-->
-              <div class="navbar-nav dropdown mx-2 my-3">
+              <div class="navbar-nav dropdown dropdown-center mx-3 my-3">
                 <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                   {% if user.avatar and not form.avatar.errors %}
-                    <img src="{{ user.avatar.url }}" alt="Avatar" width="32" height="32" class="rounded-circle"/>
+                    <img src="{{ user.avatar.url }}" alt="Avatar" width="30" height="30" class="rounded-circle"/>
                   {% else %}
-                    <i class="bi bi-person-circle"  width="32" height="32" class="rounded-circle"></i>
+                    <i class="bi bi-person-circle"  width="30" height="30" class="rounded-circle"></i>
                   {% endif %} 
                 </a>
                 
-                <ul class="dropdown-menu  mx-0 shadow w-800px">
+                <ul class="dropdown-menu dropdown-menu-lg-end  mt-3 shadow w-100px">
                   <li>
                     <a class="dropdown-item d-flex gap-2 align-items-center nav-item acct" href="{% url 'pages:dashboard'%}">
                       <i class="bi bi-speedometer mx-2"></i>
-                      Dashbord <!--for seller-->
+                      <!--for seller-->
+                      Dashbord 
                     </a>
                   </li>
                   <li>
@@ -123,6 +124,7 @@
                   </li>
                 </ul>
               </div>
+              
             {% endif %}
             </div>
           </div>

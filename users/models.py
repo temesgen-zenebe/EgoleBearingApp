@@ -16,9 +16,7 @@ def validate_avatar(value):
 # Create your models here.
 class CustomUser(AbstractUser):
     
-    dob = models.DateField(
-        verbose_name= "Date of Birth", null=True , blank=True
-    )
+    dob = models.DateField( verbose_name= "Date of Birth", null=True , blank=True )
     avatar = models.ImageField(
         upload_to='avatars/', 
         blank=True,

@@ -8,7 +8,7 @@
   
    <!-- Example Code -->
    <div class="row gap-1" >
-    <div class="col-2 border p-3 d-none d-sm-none d-md-block " >
+    {% comment %} <div class="col-2 border p-3 d-none d-sm-none d-md-block " >
       <div class="row" >
         <div class="col" >
           <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
@@ -203,17 +203,17 @@
           </div>
         </div>
       </div>
-    </div>
+    </div> {% endcomment %}
     <div class="col border offcanvas-body ">
       <div class="navbar ">
       
         <!-- Page Heading -->
-        <div class="container border-bottom  my-4">
-            <div class="d-flex justify-content-even gap-3 ">
+        <div class="container py-2 border-bottom rounded border-success">
+            <div class="d-flex justify-content-even gap-2 ">
                 <div class="">
-                    <button class="navbar-toggler d-sm-none d-md-none d-lg-black " type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"  aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                    </button>
+                    <a class="navbar-toggler " type="button"  data-bs-toggle="offcanvas" data-bs-target="#offcanvasExample"  aria-controls="offcanvasExample" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon small"></span> 
+                    </a>
                 </div>
                 <div class="pt-2">
                   <h6>Dashboard</h6>
@@ -223,20 +223,20 @@
         <!-- End of Topbar -->
       </div>
 
-      <div class="my-3 mx-auto">
+      <div class="container my-3 mx-auto">
         <main class=""> {%block mainDash %}{%endblock mainDash%} </main>
       </div>
     
 
       <!-- offcanvas offcanvas menu -->
-      <div class="offcanvas offcanvas-start navbar-nav-scrol" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+      <div class="offcanvas offcanvas-start  navbar-nav-scrol" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
           <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="offcanvasExampleLabel">
                 <a href="/" class=" d-flex align-items-center mb-2 mb-md-0 me-md-auto text-dark text-decoration-none">
-                    <svg class="bi pe-none me-2" width="40" height="32">
+                    <svg class="bi pe-none me-1" width="40" height="32">
                     <use xlink:href="#bootstrap"></use>
                     </svg>
-                    <span class="fs-4">Campany Name</span>
+                    <span class="fs-5">Egole Bearing</span>
                 </a>
             </h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>

@@ -14,7 +14,7 @@ class productsAdmin(admin.ModelAdmin):
     model = products
     list_display = ['suppliers','stores','product_name','part_number','cost', 'profit_present',
                     'price','discount_present','off_price','quantity','category','brand',
-                    'specification','description','barcode','tags','label',
+                    'specification','barcode','tags','label',
                     'return_police','states','available','shipping','images',
                     'shelf_no','slug','created','update']
 
@@ -27,7 +27,7 @@ class productsAdmin(admin.ModelAdmin):
 @admin.register(Brand)
 class BrandAdmin(admin.ModelAdmin):
     model = Brand
-    list_display = ['brand','made_in','manufactured','slug','created','update',]
+    list_display = ['brand','made_in','logo','manufactured','slug','created','update',]
    
     def get_readonly_fields(self, request, obj=None):
         if obj: # editing an existing object

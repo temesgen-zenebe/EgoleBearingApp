@@ -11,13 +11,19 @@ from .views import (
     StoreCreate, 
     SpecificationCreate,
     PictureCreate,
-    
+    # ProductListView,
+    # category_api, 
+    # brand_api,
     )
 
 
 app_name = 'store'
 urlpatterns = [
     path('products/', ProductsList.as_view(), name='products_list'),
+    # path('product-list/', ProductListView.as_view(), name='product_list'),
+    # path('api/categories/', category_api, name='category_api'),
+    # path('api/brands/', brand_api, name='brand_api'),
+
     path('products/<slug:slug>', ProductDetail.as_view(), name='product_detail'),
     path('seller/products/', SellerProductsList.as_view(), name='List_products'),
     path('seller/delete_Product/<slug:slug>', Delete_Product.as_view(), name='delete_Product'),
